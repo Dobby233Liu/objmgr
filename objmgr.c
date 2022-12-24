@@ -25,7 +25,7 @@ struct instance_memory {
 };
 
 #define INSTANCE_POOL_SIZE 10
-// TODO make statically allocated?
+/* TODO make statically allocated? */
 struct instance_memory *instance_pool[INSTANCE_POOL_SIZE];
 
 /* funcs */
@@ -142,8 +142,8 @@ void objectmgr_loop() {
       if (instance->main_routine != NULL) {
         instance->main_routine(instance, i);
       } else {
-        // TODO free mem asap?
-        // memset(instance, 0, sizeof(*instance));
+        /* TODO free mem asap? */
+        /* memset(instance, 0, sizeof(*instance)); */
       }
     }
   }
