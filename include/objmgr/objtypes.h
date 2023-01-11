@@ -14,7 +14,7 @@ struct instance_memory;
 typedef void object_routine(struct instance_memory *self, instance_id_t instance_id);
 
 struct instance_memory {
-  object_routine *main_routine;
+  object_index_t object_index;
   object_subroutine_index_t subroutine_index; /* can be disregarded, but standard objects should use this */
   int8_t vars[INSTANCE_VARS_COUNT];
 };

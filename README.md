@@ -2,6 +2,8 @@
 
 A prototype object manager written in C99,
 just for fun.
+The goal is for it to resemble the object manager
+in Sega Genesis Sonic the Hedgehog games somehow.
 
 ## Building
 

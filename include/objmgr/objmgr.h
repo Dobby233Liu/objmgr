@@ -4,7 +4,7 @@
 #ifndef _OBJMGR_H
 #define _OBJMGR_H
 
-object_routine *object_def_pointers[OBJECT_DEFS_COUNT];
+object_routine *object_main_routines[OBJECT_DEFS_COUNT];
 
 #define INSTANCE_POOL_SIZE 10
 struct instance_memory instance_pool[INSTANCE_POOL_SIZE];

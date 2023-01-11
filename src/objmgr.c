@@ -22,10 +22,11 @@ void objmgr_loop() {
   struct instance_memory *instance;
   for (int i = 0; i < INSTANCE_POOL_SIZE; i++) {
     instance = &instance_pool[i];
-    if (instance->main_routine != NULL) {
-      instance->main_routine(instance, i);
+    if (instance->object_index != OBJECT_NULL) {
+      object_main_routines[instance->object_index](instance, i);
     } else {
-      memset(instance, 0, sizeof(*instance));
+      /* TODO: maybe clear memory asap */
+      /* memset(instance, 0, sizeof(*instance)); */
     }
   }
 }
@@ -35,7 +36,7 @@ int objmgr_get_instance_count() {
   struct instance_memory *instance;
   for (int i = 0; i < INSTANCE_POOL_SIZE; i++) {
     instance = &instance_pool[i];
-    if (instance->main_routine == NULL) {
+    if (instance->object_index == OBJECT_NULL) {
       continue;
     }
     count++;
@@ -49,9 +50,9 @@ instance_id_t instance_create(object_index_t obj_index) {
   struct instance_memory *instance;
   for (int i = 0; i < INSTANCE_POOL_SIZE; i++) {
     instance = &instance_pool[i];
-    if (instance->main_routine == NULL) {
+    if (instance->object_index == OBJECT_NULL) {
       memset(instance, 0, sizeof(*instance));
-      instance->main_routine = object_def_pointers[obj_index];
+      instance->object_index = obj_index;
       return i;
     }
   }
@@ -62,7 +63,7 @@ void instance_destroy(struct instance_memory *instance) {
   if (instance == NULL) {
     return;
   }
-  instance->main_routine = NULL;
+  instance->object_index = OBJECT_NULL;
 }
 
 void instance_destroy_by_id(instance_id_t id) {

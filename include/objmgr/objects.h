@@ -4,6 +4,7 @@
 #define _OBJECTS_H
 
 enum {
+  OBJECT_NULL,
   OBJECT_01,
   OBJECT_DEFS_COUNT
 };
