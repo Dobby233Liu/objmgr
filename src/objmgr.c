@@ -3,7 +3,7 @@
 #include <objmgr/objtypes.h>
 #include <objmgr/objmgr.h>
 
-struct instance_memory instance_pool[INSTANCE_POOL_SIZE];
+static instance_memory_t instance_pool[INSTANCE_POOL_SIZE];
 
 int objmgr_init() {
   /* clear instance memory */
@@ -17,27 +17,36 @@ int objmgr_deinit() {
 }
 
 void objmgr_loop() {
-  struct instance_memory *instance;
   for (int i = 0; i < INSTANCE_POOL_SIZE; i++) {
-    instance = &instance_pool[i];
+    instance_memory_t *instance = objmgr_get_obj_from_id(i);
     if (instance->object_index != OBJECT_NULL) {
       object_main_routines[instance->object_index](instance, i);
-    } else {
-      /* TODO: maybe clear memory asap */
-      /* memset(instance, 0, sizeof(*instance)); */
     }
   }
 }
 
 int objmgr_get_instance_count() {
-  int count = 0;
-  struct instance_memory *instance;
+  int count = INSTANCE_POOL_SIZE;
   for (int i = 0; i < INSTANCE_POOL_SIZE; i++) {
-    instance = &instance_pool[i];
+    instance_memory_t *instance = objmgr_get_obj_from_id(i);
     if (instance->object_index == OBJECT_NULL) {
+      count--;
       continue;
     }
-    count++;
   }
   return count;
+}
+
+instance_memory_t *objmgr_get_obj_from_id(instance_id_t id) {
+  return &instance_pool[id];
+}
+
+instance_id_t objmgr_find_free_slot() {
+  for (int i = 0; i < INSTANCE_POOL_SIZE; i++) {
+    instance_memory_t *instance = objmgr_get_obj_from_id(i);
+    if (instance->object_index == OBJECT_NULL) {
+      return i;
+    }
+  }
+  return OBJMGR_STATUS_FAILURE;
 }

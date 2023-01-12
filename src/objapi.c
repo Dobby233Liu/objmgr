@@ -5,25 +5,20 @@
 #include <objmgr/objapi.h>
 
 instance_id_t instance_create(object_index_t obj_index) {
-  struct instance_memory *instance;
-  for (int i = 0; i < INSTANCE_POOL_SIZE; i++) {
-    instance = &instance_pool[i];
-    if (instance->object_index == OBJECT_NULL) {
-      memset(instance, 0, sizeof(*instance));
-      instance->object_index = obj_index;
-      return i;
-    }
+  instance_id_t i = objmgr_find_free_slot();
+  if (i != OBJMGR_STATUS_FAILURE) {
+    instance_memory_t *instance = objmgr_get_obj_from_id(i);
+    memset(instance, 0, sizeof(*instance));
+    instance->object_index = obj_index;
+    return i;
   }
   return OBJMGR_STATUS_FAILURE;
 }
 
-void instance_destroy(struct instance_memory *instance) {
+int instance_destroy(instance_memory_t *instance) {
   if (instance == NULL) {
-    return;
+    return OBJMGR_STATUS_FAILURE;
   }
   instance->object_index = OBJECT_NULL;
-}
-
-void instance_destroy_by_id(instance_id_t id) {
-  instance_destroy(&instance_pool[id]);
+  return OBJMGR_STATUS_SUCCESS;
 }
