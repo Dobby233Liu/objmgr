@@ -4,7 +4,7 @@
 #include <objmgr/objapi.h>
 #include <objmgr/objects/object01.h>
 
-object_routine *object01_subroutines[OBJECT_01_SUB_COUNT] = {
+static object_routine *object01_subroutines[OBJECT_01_SUB_COUNT] = {
   &object01_init,
   &object01_loop,
   &object01_remove_self

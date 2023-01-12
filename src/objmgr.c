@@ -5,17 +5,19 @@
 #include <objmgr/objapi.h>
 #include <objmgr/objmgr.h>
 
+struct instance_memory instance_pool[INSTANCE_POOL_SIZE];
+
 /* main functionality */
 
 int objmgr_init() {
   /* clear instance memory */
   memset(&instance_pool, 0, sizeof(instance_pool));
-  return STATUS_SUCCESS;
+  return OBJMGR_STATUS_SUCCESS;
 }
 
 int objmgr_deinit() {
   objmgr_init();
-  return STATUS_SUCCESS;
+  return OBJMGR_STATUS_SUCCESS;
 }
 
 void objmgr_loop() {
@@ -56,7 +58,7 @@ instance_id_t instance_create(object_index_t obj_index) {
       return i;
     }
   }
-  return STATUS_FAILURE;
+  return OBJMGR_STATUS_FAILURE;
 }
 
 void instance_destroy(struct instance_memory *instance) {

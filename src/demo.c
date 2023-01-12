@@ -7,12 +7,12 @@
 int main() {
   instance_id_t inst;
 
-  if (objmgr_init() != STATUS_SUCCESS) {
+  if (objmgr_init() != OBJMGR_STATUS_SUCCESS) {
     return 1;
   }
 
   inst = instance_create(OBJECT_01);
-  if (inst == STATUS_FAILURE) {
+  if (inst == OBJMGR_STATUS_FAILURE) {
     return 1;
   }
 

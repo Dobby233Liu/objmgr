@@ -1,7 +1,7 @@
-#include "objects/object01.h"
+#include <objmgr/objects/object01.h>
 
-#ifndef _OBJECTS_H
-#define _OBJECTS_H
+#ifndef OBJECTS_H
+#define OBJECTS_H
 
 enum {
   OBJECT_NULL,
@@ -9,4 +9,4 @@ enum {
   OBJECT_DEFS_COUNT
 };
 
-#endif /* _OBJECTS_H */
+#endif /* OBJECTS_H */

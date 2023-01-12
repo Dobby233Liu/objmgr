@@ -1,22 +1,22 @@
-#include "objtypes.h"
-#include "objects.h"
+#include <objmgr/objtypes.h>
+#include <objmgr/objects.h>
 
-#ifndef _OBJMGR_H
-#define _OBJMGR_H
+#ifndef OBJMGR_H
+#define OBJMGR_H
 
-object_routine *object_main_routines[OBJECT_DEFS_COUNT];
+extern object_routine *object_main_routines[OBJECT_DEFS_COUNT];
 
 #define INSTANCE_POOL_SIZE 10
-struct instance_memory instance_pool[INSTANCE_POOL_SIZE];
+extern struct instance_memory instance_pool[INSTANCE_POOL_SIZE];
 
-int objmgr_init();
-int objmgr_deinit();
-void objmgr_loop();
+int objmgr_init(void);
+int objmgr_deinit(void);
+void objmgr_loop(void);
 
 /* utility functions */
-int objmgr_get_instance_count();
+int objmgr_get_instance_count(void);
 
-#define STATUS_FAILURE -1
-#define STATUS_SUCCESS 0
+#define OBJMGR_STATUS_FAILURE -1
+#define OBJMGR_STATUS_SUCCESS 0
 
-#endif /* _OBJMGR_H */
+#endif /* OBJMGR_H */
