@@ -1,14 +1,19 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(objmgr)
+project(objmgr LANGUAGES C)
+enable_testing()
+
+set(CMAKE_C_STANDARD 99)
 
 add_library(objmgr OBJECT
   src/objmgr/objmgr.c
   src/objmgr/objapi.c
 )
-target_include_directories(objmgr PUBLIC include)
+target_include_directories(objmgr PUBLIC
+  include
+)
 
-add_executable(test
+add_executable(tester
   src/test/objdefs/objdefs.c
   src/test/objdefs/obj_loop_5_then_remove_self.c
   src/test/objdefs/obj_noop.c
@@ -16,12 +21,14 @@ add_executable(test
   src/test/hash.c
   src/test/main.c
 )
-target_link_libraries(test PUBLIC objmgr)
-target_include_directories(test PUBLIC libs/uthash/src)
-
-set_property(
-  TARGET objmgr test
-  PROPERTY C_STANDARD_REQUIRED 99
+target_link_libraries(tester PUBLIC
+  objmgr
+)
+target_include_directories(tester PUBLIC
+  libs/uthash/src
 )
 
-add_test(NAME l5trs_single COMMAND test l5trs_single)
+add_test(
+  NAME l5trs_single
+  COMMAND $<TARGET_FILE:tester> l5trs_single
+)
