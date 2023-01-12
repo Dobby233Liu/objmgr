@@ -31,7 +31,7 @@ static bool test_run(test_t test) {
 int main(int argc, char **argv) {
   if (argc != 2) {
     ERR(ME, "must provide a test as command arg 1");
-    return 1;
+    return 2;
   }
 
   test_hash_init();
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
   test_t *test = test_hash_find(argv[1]);
   if (!test) {
     ERR(ME, "test does not exist");
-    return 1;
+    return 2;
   }
 
   bool res = test_run(*test);
