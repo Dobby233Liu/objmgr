@@ -6,9 +6,7 @@ add_library(objmgr OBJECT
   src/objmgr/objmgr.c
   src/objmgr/objapi.c
 )
-target_include_directories(objmgr PUBLIC
-  include
-)
+target_include_directories(objmgr PUBLIC include)
 
 add_library(objects OBJECT
   src/objdefs/objdefs.c
@@ -21,7 +19,7 @@ add_executable(objmgr_demo
 )
 target_link_libraries(objmgr_demo PUBLIC objmgr objects)
 
-set_property(TARGET objmgr objects objmgr_demo
-  PROPERTY C_STANDARD_REQUIRED
-  99
+set_property(
+  TARGET objmgr objects objmgr_demo
+  PROPERTY C_STANDARD_REQUIRED 99
 )

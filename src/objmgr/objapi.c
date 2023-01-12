@@ -16,10 +16,7 @@ instance_id_t instance_create(object_index_t obj_index) {
 }
 
 bool instance_exists(instance_memory_t *instance) {
-  if (!instance) {
-    return false;
-  }
-  return instance->object_index != OBJECT_NULL;
+  return instance && instance->object_index != OBJECT_NULL;
 }
 
 bool instance_destroy(instance_memory_t *instance) {
