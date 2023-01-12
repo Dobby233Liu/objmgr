@@ -17,5 +17,6 @@ cmake --build .
 
 [BSL-1.0](LICENSE)
 
-`uthash`, located in `libs/uthash`, is in
-[BSD revised](libs/uthash/LICENSE) license
+`uthash`, located in `libs/uthash`, has
+[BSD revised](https://troydhanson.github.io/uthash/license.html) license;
+see `libs/uthash/LICENSE`.
