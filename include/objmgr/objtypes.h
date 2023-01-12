@@ -1,3 +1,5 @@
+#include <objmgr/config_consts.h>
+
 #ifndef OBJMGR_OBJTYPES_H
 #define OBJMGR_OBJTYPES_H
 
@@ -8,7 +10,6 @@ typedef int instance_id_t;
 
 typedef unsigned int object_subroutine_index_t;
 
-#define INSTANCE_VARS_COUNT 10
 struct instance_memory {
   object_index_t object_index;
 
@@ -16,7 +17,7 @@ struct instance_memory {
   object_subroutine_index_t subroutine_index;
 
   /* user-defined variables */
-  int vars[INSTANCE_VARS_COUNT];
+  int vars[OBJMGR_INSTANCE_VARS_COUNT];
 };
 typedef struct instance_memory instance_memory_t;
 

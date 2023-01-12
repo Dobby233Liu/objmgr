@@ -10,7 +10,7 @@ void object01(instance_memory_t *self, instance_id_t instance_id);
    someone else wants to modify them */
 enum {
   OBJECT_01_VAR_COUNTER,
-  OBJECT_01_VAR_COUNT = INSTANCE_VARS_COUNT
+  OBJECT_01_VAR_COUNT = OBJMGR_INSTANCE_VARS_COUNT
 };
 
 enum {
