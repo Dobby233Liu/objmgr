@@ -20,12 +20,5 @@ jobs:
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-
-      # Execute tests defined by the CMake configuration.
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      # run: ctest -C ${{env.BUILD_TYPE}}
-
-      # We only have a very primitive test right now
-      # Just gonna check if the demo runs for now
-      run: ./objmgr_demo
+      run: ctest -C ${{env.BUILD_TYPE}}
 

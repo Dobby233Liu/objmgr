@@ -1,9 +1,10 @@
 #include <stddef.h>
 
 #include <objmgr/objtypes.h>
-#include <objdefs/objdefs.h>
+#include <test/objdefs/objdefs.h>
 
 object_routine *object_main_routines[OBJECT_DEFS_COUNT] = {
   NULL,
-  &object01
+  &obj_loop_5_then_remove_self,
+  &obj_noop
 };

@@ -8,18 +8,20 @@ add_library(objmgr OBJECT
 )
 target_include_directories(objmgr PUBLIC include)
 
-add_library(objdefs OBJECT
-  src/objdefs/objdefs.c
-  src/objdefs/object01.c
+add_executable(test
+  src/test/objdefs/objdefs.c
+  src/test/objdefs/obj_loop_5_then_remove_self.c
+  src/test/objdefs/obj_noop.c
+  src/test/tests.c
+  src/test/hash.c
+  src/test/main.c
 )
-target_link_libraries(objdefs PUBLIC objmgr)
-
-add_executable(objmgr_demo
-  src/demo.c
-)
-target_link_libraries(objmgr_demo PUBLIC objmgr objdefs)
+target_link_libraries(test PUBLIC objmgr)
+target_include_directories(test PUBLIC libs/uthash/src)
 
 set_property(
-  TARGET objmgr objdefs objmgr_demo
+  TARGET objmgr test
   PROPERTY C_STANDARD_REQUIRED 99
 )
+
+add_test(NAME l5trs_single COMMAND test l5trs_single)
