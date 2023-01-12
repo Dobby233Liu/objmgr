@@ -1,5 +1,5 @@
+#include <stdbool.h>
 #include <string.h> /* for memset */
-#include <objmgr/internal/macros.h>
 
 #include <objmgr/objtypes.h>
 #include <objmgr/config_consts.h>
