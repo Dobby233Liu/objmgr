@@ -12,14 +12,14 @@
 
 static bool test_run(test_t test) {
   if (!objmgr_init()) {
-    ERR(ME, "failure to initalize objmgr");
+    ERR(ME, "failed to initalize objmgr - failure");
     return false;
   }
 
   bool res = test.func();
 
   if (!objmgr_deinit()) {
-    ERR(ME, "failure to deinitalize objmgr");
+    ERR(ME, "failed to deinitalize objmgr - failure");
     return false;
   }
 
@@ -43,6 +43,11 @@ int main(int argc, char **argv) {
   }
 
   bool res = test_run(*test);
+  if (res) {
+    INFO(ME, "success");
+  } else {
+    INFO(ME, "failure");
+  }
 
   test_hash_deinit();
   if (!res)
