@@ -6,6 +6,7 @@
 #include <objmgr/objmgr.h>
 #include <test/objdefs/objdefs.h>
 #include <test/test.h>
+#include <test/prettyprint.h>
 #include "tests.h"
 
 static bool create_loop_and_destroy() {
