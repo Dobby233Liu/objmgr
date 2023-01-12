@@ -15,5 +15,6 @@ void objmgr_loop(void);
 int objmgr_get_instance_count(void);
 instance_memory_t *objmgr_get_obj_from_id(instance_id_t id);
 instance_id_t objmgr_find_free_slot(void);
+bool objmgr_initalize_object(instance_memory_t *instance, object_index_t object_index);
 
 #endif /* OBJMGR_OBJMGR_H */

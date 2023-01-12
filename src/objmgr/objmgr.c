@@ -57,3 +57,11 @@ instance_id_t objmgr_find_free_slot() {
   }
   return OBJMGR_NO_INSTANCE;
 }
+
+bool objmgr_initalize_object(instance_memory_t *instance, object_index_t object_index) {
+  if (!instance || !memset(instance, 0, sizeof(*instance))) {
+    return false;
+  }
+  instance->object_index = object_index;
+  return true;
+}

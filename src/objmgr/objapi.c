@@ -5,12 +5,11 @@
 #include <objmgr/objmgr.h>
 #include <objmgr/objapi.h>
 
-instance_id_t instance_create(object_index_t obj_index) {
+instance_id_t instance_create(object_index_t object_index) {
   instance_id_t i = objmgr_find_free_slot();
-  if (i != OBJMGR_NO_INSTANCE) {
-    instance_memory_t *instance = objmgr_get_obj_from_id(i);
-    memset(instance, 0, sizeof(*instance));
-    instance->object_index = obj_index;
+  instance_memory_t *instance = objmgr_get_obj_from_id(i);
+  if (!instance || !objmgr_initalize_object(instance, object_index)) {
+    return OBJMGR_NO_INSTANCE;
   }
   return i;
 }
