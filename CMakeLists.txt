@@ -29,6 +29,7 @@ target_include_directories(tester PUBLIC
 )
 
 add_test(
-  NAME l5trs_single
-  COMMAND $<TARGET_FILE:tester> l5trs_single
+  NAME create_loop_and_destroy
+  COMMAND $<TARGET_FILE:tester>
+    create_loop_and_destroy
 )
