@@ -12,8 +12,7 @@ static instance_memory_t instance_pool[OBJMGR_INSTANCE_POOL_TOTAL];
 
 bool objmgr_init() {
   /* clear instance memory */
-  memset(&instance_pool, 0, sizeof(instance_pool));
-  return true;
+  return memset(&instance_pool, 0, sizeof(instance_pool));
 }
 
 bool objmgr_deinit() {
