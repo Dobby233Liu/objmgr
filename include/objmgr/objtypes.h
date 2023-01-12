@@ -1,22 +1,14 @@
-#ifndef OBJTYPES_H
-#define OBJTYPES_H
-
-#define OBJMGR_STATUS_FAILURE -1
-#define OBJMGR_STATUS_SUCCESS 0
-
-#define INSTANCE_VARS_COUNT 10
+#ifndef OBJMGR_OBJTYPES_H
+#define OBJMGR_OBJTYPES_H
 
 typedef unsigned int object_index_t;
 typedef int instance_id_t;
-typedef unsigned int object_subroutine_index_t;
 
 #define OBJECT_NULL (object_index_t)0
 
-struct instance_memory;
-typedef struct instance_memory instance_memory_t;
+typedef unsigned int object_subroutine_index_t;
 
-typedef void object_routine(instance_memory_t *self, instance_id_t instance_id);
-
+#define INSTANCE_VARS_COUNT 10
 struct instance_memory {
   object_index_t object_index;
 
@@ -26,5 +18,8 @@ struct instance_memory {
   /* user-defined variables */
   int vars[INSTANCE_VARS_COUNT];
 };
+typedef struct instance_memory instance_memory_t;
 
-#endif /* OBJTYPES_H */
+typedef void object_routine(instance_memory_t *self, instance_id_t instance_id);
+
+#endif /* OBJMGR_OBJTYPES_H */

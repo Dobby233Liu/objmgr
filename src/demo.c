@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 #include <objmgr/objapi.h>
 #include <objmgr/objmgr.h>
 #include <objdefs/objdefs.h>
@@ -7,12 +5,12 @@
 int main() {
   instance_id_t inst;
 
-  if (objmgr_init() != OBJMGR_STATUS_SUCCESS) {
+  if (!objmgr_init()) {
     return 1;
   }
 
   inst = instance_create(OBJECT_01);
-  if (inst == OBJMGR_STATUS_FAILURE) {
+  if (inst == OBJMGR_NO_INSTANCE) {
     return 1;
   }
 

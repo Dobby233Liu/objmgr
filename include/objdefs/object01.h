@@ -1,7 +1,7 @@
 #include <objmgr/objtypes.h>
 
-#ifndef OBJECT01_H
-#define OBJECT01_H
+#ifndef OBJDEFS_OBJECT01_H
+#define OBJDEFS_OBJECT01_H
 
 /* main routine should be public */
 void object01(instance_memory_t *self, instance_id_t instance_id);
@@ -20,4 +20,4 @@ enum {
   OBJECT_01_SUB_COUNT
 };
 
-#endif /* OBJECT01_H */
+#endif /* OBJDEFS_OBJECT01_H */

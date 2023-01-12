@@ -7,19 +7,25 @@
 
 instance_id_t instance_create(object_index_t obj_index) {
   instance_id_t i = objmgr_find_free_slot();
-  if (i != OBJMGR_STATUS_FAILURE) {
+  if (i != OBJMGR_NO_INSTANCE) {
     instance_memory_t *instance = objmgr_get_obj_from_id(i);
     memset(instance, 0, sizeof(*instance));
     instance->object_index = obj_index;
-    return i;
   }
-  return OBJMGR_STATUS_FAILURE;
+  return i;
 }
 
-int instance_destroy(instance_memory_t *instance) {
-  if (instance == NULL) {
-    return OBJMGR_STATUS_FAILURE;
+bool instance_exists(instance_memory_t *instance) {
+  if (!instance) {
+    return false;
+  }
+  return instance->object_index != OBJECT_NULL;
+}
+
+bool instance_destroy(instance_memory_t *instance) {
+  if (!instance_exists(instance)) {
+    return false;
   }
   instance->object_index = OBJECT_NULL;
-  return OBJMGR_STATUS_SUCCESS;
+  return true;
 }
