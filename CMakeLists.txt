@@ -3,16 +3,16 @@ cmake_minimum_required(VERSION 3.11)
 project(objmgr)
 
 add_library(objmgr OBJECT
-  src/objmgr.c
-  src/objapi.c
+  src/objmgr/objmgr.c
+  src/objmgr/objapi.c
 )
 target_include_directories(objmgr PUBLIC
   include
 )
 
 add_library(objects OBJECT
-  src/objects.c
-  src/objects/object01.c
+  src/objdefs/objdefs.c
+  src/objdefs/object01.c
 )
 target_link_libraries(objects PUBLIC objmgr)
 

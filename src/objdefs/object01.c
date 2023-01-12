@@ -2,7 +2,7 @@
 
 #include <objmgr/objtypes.h>
 #include <objmgr/objapi.h>
-#include <objmgr/objects/object01.h>
+#include <objdefs/object01.h>
 
 static object_routine *object01_subroutines[OBJECT_01_SUB_COUNT] = {
   &object01_init,

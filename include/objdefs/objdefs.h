@@ -1,12 +1,17 @@
 #include <objmgr/objtypes.h>
-#include <objmgr/objects/object01.h>
+#include <objdefs/object01.h>
 
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
 enum {
-  OBJECT_01 = OBJECT_NULL + 1,
+  OBJECT__NULL_PLACE = OBJECT_NULL,
+
+  OBJECT_01,
+
   OBJECT_DEFS_COUNT
 };
+#undef OBJECT__NULL_PLACE
 
 #endif /* OBJECTS_H */
+

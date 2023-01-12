@@ -1,8 +1,8 @@
 #include <stdlib.h>
 
 #include <objmgr/objapi.h>
-#include <objmgr/objects.h>
 #include <objmgr/objmgr.h>
+#include <objdefs/objdefs.h>
 
 int main() {
   instance_id_t inst;
