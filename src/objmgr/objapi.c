@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include <string.h> /* for memset */
 
 #include <objmgr/objtypes.h>

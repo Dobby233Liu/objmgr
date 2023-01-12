@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 #include <objmgr/objmgr.h>
 #include <objmgr/objtypes.h>
 #include <objdefs/objdefs.h>

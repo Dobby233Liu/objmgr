@@ -3,6 +3,11 @@
 #ifndef OBJECT01_H
 #define OBJECT01_H
 
+/* main routine should be public */
+void object01(instance_memory_t *self, instance_id_t instance_id);
+
+/* enums for vars and subs just in case
+   someone else wants to modify them */
 enum {
   OBJECT_01_VAR_COUNTER,
   OBJECT_01_VAR_COUNT = INSTANCE_VARS_COUNT
@@ -14,10 +19,5 @@ enum {
   OBJECT_01_SUB_REMOVE_SELF,
   OBJECT_01_SUB_COUNT
 };
-
-void object01(instance_memory_t *self, instance_id_t instance_id);
-void object01_init(instance_memory_t *self, instance_id_t instance_id);
-void object01_loop(instance_memory_t *self, instance_id_t instance_id);
-void object01_remove_self(instance_memory_t *self, instance_id_t instance_id);
 
 #endif /* OBJECT01_H */

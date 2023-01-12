@@ -1,10 +1,6 @@
 #ifndef OBJTYPES_H
 #define OBJTYPES_H
 
-#ifndef NULL
-#define NULL 0
-#endif
-
 #define OBJMGR_STATUS_FAILURE -1
 #define OBJMGR_STATUS_SUCCESS 0
 
@@ -23,7 +19,11 @@ typedef void object_routine(instance_memory_t *self, instance_id_t instance_id);
 
 struct instance_memory {
   object_index_t object_index;
+
+  /* standard variables */
   object_subroutine_index_t subroutine_index;
+
+  /* user-defined variables */
   int vars[INSTANCE_VARS_COUNT];
 };
 
