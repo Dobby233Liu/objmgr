@@ -12,20 +12,21 @@
 static bool create_loop_and_destroy() {
   #define ME "create_loop_and_destroy"
 
-  if (instance_create(OBJ_LOOP_5_THEN_REMOVE_SELF) == OBJMGR_NO_INSTANCE) {
+  instance_memory_t *inst_l5trs = NULL;
+  if (instance_create(&inst_l5trs, OBJ_LOOP_5_THEN_REMOVE_SELF) == OBJMGR_NO_INSTANCE || !inst_l5trs) {
     ERR(ME, "can't create obj_l5trs instance - failure");
     return false;
   }
 
-  unsigned int runs = 1;
-  while (objmgr_get_instance_count() > 0 || runs < 10) {
+  int runs = 1;
+  while (objmgr_get_instance_count() > 0 && runs < 20) {
     objmgr_loop();
     runs++;
   }
 
-  bool is_done = objmgr_get_instance_count() <= 1;
+  bool is_done = !instance_exists(inst_l5trs) && objmgr_get_instance_count() < 1;
   if (!is_done) {
-    ERR(ME, "obj_l5trs did not remove itself in 10 runs - failure");
+    ERR(ME, "obj_l5trs did not remove itself in 20 runs - failure");
   }
   return is_done;
 

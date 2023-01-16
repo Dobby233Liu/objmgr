@@ -21,7 +21,7 @@ bool objmgr_deinit() {
 
 void objmgr_loop() {
   for (instance_id_t i = 0; i < OBJMGR_INSTANCE_POOL_TOTAL; i++) {
-    instance_memory_t *instance = objmgr_get_obj_from_id(i);
+    instance_memory_t *instance = objmgr_get_instance_from_id(i);
     if (instance_exists(instance)) {
       object_main_routines[instance->object_index](instance, i);
     }
@@ -31,7 +31,7 @@ void objmgr_loop() {
 int objmgr_get_instance_count() {
   int count = OBJMGR_INSTANCE_POOL_TOTAL;
   for (instance_id_t i = 0; i < OBJMGR_INSTANCE_POOL_TOTAL; i++) {
-    instance_memory_t *instance = objmgr_get_obj_from_id(i);
+    instance_memory_t *instance = objmgr_get_instance_from_id(i);
     if (!instance_exists(instance)) {
       count--;
       continue;
@@ -40,16 +40,24 @@ int objmgr_get_instance_count() {
   return count;
 }
 
-instance_memory_t *objmgr_get_obj_from_id(instance_id_t id) {
+instance_memory_t *objmgr_get_instance_from_id(instance_id_t id) {
   if (id < 0 || id >= OBJMGR_INSTANCE_POOL_TOTAL) {
     return NULL;
   }
   return &instance_pool[id];
 }
 
+instance_id_t objmgr_get_instance_id(instance_memory_t *instance) {
+  for (instance_id_t i = 0; i < OBJMGR_INSTANCE_POOL_TOTAL; i++) {
+    if (objmgr_get_instance_from_id(i) == instance)
+      return i;
+  }
+  return OBJMGR_NO_INSTANCE;
+}
+
 instance_id_t objmgr_find_free_slot() {
   for (instance_id_t i = 0; i < OBJMGR_INSTANCE_POOL_TOTAL; i++) {
-    instance_memory_t *instance = objmgr_get_obj_from_id(i);
+    instance_memory_t *instance = objmgr_get_instance_from_id(i);
     if (!instance_exists(instance)) {
       return i;
     }
