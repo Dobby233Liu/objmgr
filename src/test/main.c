@@ -23,14 +23,12 @@ static bool test_run(test_t test) {
     return false;
   }
 
-  if (test.should_fail)
-    return !res;
-  return res;
+  return test.should_fail ? !res : res;
 }
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    ERR(ME, "must provide a test as command arg 1");
+    ERR(ME, "usage: tester (test)");
     return 2;
   }
 
@@ -38,15 +36,15 @@ int main(int argc, char **argv) {
 
   test_t *test = test_hash_find(argv[1]);
   if (!test) {
-    ERR(ME, "test does not exist");
+    ERR(ME, "no such test");
     return 2;
   }
 
   bool res = test_run(*test);
   if (res) {
-    INFO(ME, "success");
+    INFO(ME, "test passed");
   } else {
-    INFO(ME, "failure");
+    INFO(ME, "test failure");
   }
 
   test_hash_deinit();
