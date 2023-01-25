@@ -1,5 +1,4 @@
 #include <stddef.h>
-#include <string.h> /* for memset */
 
 #include <objmgr/objtypes.h>
 #include <objmgr/objmgr.h>
@@ -13,7 +12,7 @@ instance_id_t instance_create(instance_memory_t **instance, object_index_t objec
     return OBJMGR_NO_INSTANCE;
   }
   if (instance) {
-	*instance = tmp_instance;
+    *instance = tmp_instance;
   }
   return i;
 }
