@@ -33,6 +33,8 @@ static bool create_loop_and_destroy() {
   #undef ME
 }
 
+/* HACK: Sync the length of this array def
+   with the array of the same name in tests.h. */
 test_t tests[1] = {
   {
     .name = "create_loop_and_destroy",
